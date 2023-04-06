@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { AuthResponse } from '../models/authResponse';
 import { getTestBed } from '@angular/core/testing';
 import { HttpErrorResponse } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-auth',
@@ -17,7 +18,7 @@ export class AuthComponent implements OnInit {
   loading: boolean = false;
   error: string = "";
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -44,8 +45,8 @@ export class AuthComponent implements OnInit {
       authResponse = this.authService.signUp(email, password)
     }
     authResponse.subscribe(response => {
-      console.log(response);
       this.loading = false;
+      this.router.navigate(['/movies']);
     }, err => {
       this.error = err;
       this.loading = false;
