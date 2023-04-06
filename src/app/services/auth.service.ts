@@ -21,44 +21,14 @@ export class AuthService {
       email: email,
       password: password,
       returnSecureToken: true
-    }).pipe(
-      catchError(this.handleError)
-    );
+    });
   }
   login(email: string, password: string) {
     return this.http.post<AuthResponse>(this.signInUrl + this.api_key, {
       email: email,
       password: password,
       returnSecureToken: true
-    }).pipe(
-      catchError(this.handleError)
-    );
+    });
   }
-
-
-  private handleError(response: HttpErrorResponse) {
-    let message = "Hata Oluştu";
-
-    if (!navigator.onLine) {
-      message = "check your internet connection";
-      return throwError(message);
-    }
-
-    if (response.error) {
-      switch (response.error.error.message) {
-        case "EMAIL_EXISTS":
-          message = "mail is already registered";
-          break;
-        case "EMAIL_NOT_FOUND":
-          message = "email not found";
-          break;
-        case "INVALID_PASSWORD":
-          message = "invalid password";
-          break;
-      }
-    }
-    return throwError(message);
-  }
-
 }
 
