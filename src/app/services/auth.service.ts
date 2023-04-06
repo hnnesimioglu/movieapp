@@ -4,6 +4,7 @@ import { AuthResponse } from '../models/authResponse';
 import { tap } from 'rxjs/operators';
 import { BehaviorSubject } from 'rxjs';
 import { User } from '../models/user';
+import { Router } from '@angular/router';
 
 
 @Injectable({
@@ -16,7 +17,7 @@ export class AuthService {
   private api_key = "AIzaSyAaMGan-iodTa_PGsQP34x0pI3rrA6_n10";
   user = new BehaviorSubject<User>(null);
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router: Router) { }
 
   signUp(email: string, password: string) {
     return this.http.post<AuthResponse>(this.signUpUrl + this.api_key, {
@@ -59,6 +60,10 @@ export class AuthService {
 
       }),
     );;
+  }
+  logout() {
+    this.user.next(null);
+    this.router.navigate(['/auth']);
   }
 }
 

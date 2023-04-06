@@ -2,10 +2,10 @@
   <div class="container">
     <a href="/" class="navbar-brand">Movie App</a>
     <ul class="navbar-nav me-auto">
-      <li class="nav-item">
+      <li *ngIf="!isAuthenticated" class="nav-item">
         <a href="/" class="nav-link active">Home</a>
       </li>
-      <li class="nav-item">
+      <li *ngIf="!isAuthenticated" class="nav-item">
         <a routerLink="/movies" class="nav-link">Movies</a>
       </li>
       <li *ngIf="isAuthenticated" class="nav-item">
@@ -20,7 +20,7 @@
         <a *ngIf="!isAuthenticated" routerLink="/auth" class="nav-link">Login</a>
       </li>
       <li *ngIf="isAuthenticated" class="nav-item">
-        <a routerLink="/logout" class="nav-link">Logout</a>
+        <a (click)="onLogout()" class="nav-link">Logout</a>
       </li>
     </ul>
   </div>
