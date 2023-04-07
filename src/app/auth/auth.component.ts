@@ -26,7 +26,10 @@ export class AuthComponent implements OnInit {
   onToggleMode() {
     this.isLoginMode = !this.isLoginMode;
   }
-
+  closeDialog($event: any) {
+    console.log("output gelen veri: ", $event);
+    this.error = null;
+  }
   onSubmit(form: NgForm) {
     if (form.invalid) {
       return;

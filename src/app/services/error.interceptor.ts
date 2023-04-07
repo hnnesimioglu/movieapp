@@ -6,6 +6,7 @@ export class ErrorInterceptor implements HttpInterceptor {
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         return next.handle(req).pipe(
             catchError((response: HttpErrorResponse) => {
+                console.log(response);
                 let message = "Hata Oluştu";
 
                 if (!navigator.onLine) {
