@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
+    "calistir": "ng serve -o --host 192.168.160.132",
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",

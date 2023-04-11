@@ -5,6 +5,7 @@ import { User } from "../models/user";
 import { MovieService } from "../services/movie.service";
 import { CategoryService } from "../services/category.service";
 import { ActivatedRoute } from '@angular/router';
+import { AuthService } from '../services/auth.service';
 
 
 @Component({
@@ -18,6 +19,7 @@ export class MoviesComponent implements OnInit {
   title = "Film Listesi";
   movies: Movie[] = [];
   filteredMovies: Movie[] = [];
+  userId: string;
   popularMovies: Movie[];
   filterText: string = "";
   error: any;
@@ -26,10 +28,16 @@ export class MoviesComponent implements OnInit {
   constructor(
     private alertify: AlertifyService,
     private movieService: MovieService,
-    private activatedRoute: ActivatedRoute) {
+    private activatedRoute: ActivatedRoute,
+    private authService: AuthService,
+  ) {
   }
 
   ngOnInit(): void {
+    this.authService.user.subscribe(user => {
+      this.userId = user.id;
+    });
+
     this.activatedRoute.params.subscribe(params => {
 
       this.loading = true;
@@ -59,7 +67,10 @@ export class MoviesComponent implements OnInit {
       $event.target.classList.remove('btn-primary');
       $event.target.classList.add('btn-danger');
       $event.target.innerText = "Remove from List";
-      this.alertify.success(movie.title + ' added to list');
+
+      this.movieService
+        .adToMyList({ userId: this.userId, movieId: movie.id })
+        .subscribe(() => this.alertify.success(movie.title + ' added to list'));
     } else {
       $event.target.classList.add('btn-primary');
       $event.target.classList.remove('btn-danger');
