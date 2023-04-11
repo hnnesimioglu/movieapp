@@ -75,7 +75,10 @@ export class MoviesComponent implements OnInit {
       $event.target.classList.add('btn-primary');
       $event.target.classList.remove('btn-danger');
       $event.target.innerText = "Add to List";
-      this.alertify.error(movie.title + ' removed from list');
+
+      this.movieService
+        .removeFromMyList({ userId: this.userId, movieId: movie.id })
+        .subscribe(() => this.alertify.error(movie.title + 'removed from list'));
     }
 
     console.log(movie.title);
