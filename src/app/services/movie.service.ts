@@ -75,6 +75,23 @@ export class MovieService {
         catchError(this.handleError),
       );
   }
+  getFavList(userId: string): Observable<string[]> {
+    return this.http.get<string[]>(this.url_firebase + "users/" + userId + "/favMovieList.json").pipe(
+      map(response => {
+
+        const movies: string[] = [];
+        for (const key in response) {
+          movies.push(key);
+        }
+        return movies;
+
+
+      }),
+      tap(data => console.log(data)),
+      catchError(this.handleError)
+
+    );
+  }
 
   handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {

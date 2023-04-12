@@ -20,6 +20,7 @@ export class MoviesComponent implements OnInit {
   movies: Movie[] = [];
   filteredMovies: Movie[] = [];
   userId: string;
+  favMovieList: string[] = [];
   popularMovies: Movie[];
   filterText: string = "";
   error: any;
@@ -36,24 +37,27 @@ export class MoviesComponent implements OnInit {
   ngOnInit(): void {
     this.authService.user.subscribe(user => {
       this.userId = user.id;
-    });
 
-    this.activatedRoute.params.subscribe(params => {
+      this.activatedRoute.params.subscribe(params => {
 
-      this.loading = true;
+        this.loading = true;
 
-      // @ts-ignore
-      this.movieService.getMovies(params['categoryId']).subscribe(data => {
-        this.movies = data;
-        this.filteredMovies = this.movies;
+        this.movieService.getMovies(params['categoryId']).subscribe(data => {
+          this.movies = data;
+          this.filteredMovies = this.movies;
 
-        this.loading = false;
-      }, error => {
-        this.error = error;
-        this.loading = false;
+          this.movieService.getFavList(this.userId).subscribe(data => {
+            this.favMovieList = data;
+            console.log(this.favMovieList);
+          });
+
+          this.loading = false;
+        }, error => {
+          this.error = error;
+          this.loading = false;
+        });
       });
     });
-
   }
 
   onInputChange() {
@@ -83,5 +87,9 @@ export class MoviesComponent implements OnInit {
 
     console.log(movie.title);
     console.log($event.target.classList);
+  }
+
+  getButtonState(movie: Movie) {
+    return this.favMovieList.findIndex(m => m === movie.id) > -1;
   }
 }
