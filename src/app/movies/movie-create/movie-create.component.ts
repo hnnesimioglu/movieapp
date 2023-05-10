@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Category } from '../models/category';
-import { CategoryService } from "../services/category.service";
-import { MovieService } from '../services/movie.service';
-import { AlertifyService } from "../services/alertify.service";
+import { Category } from '../../models/category';
+import { CategoryService } from "../../services/category.service";
+import { MovieService } from '../movie.service';
+import { AlertifyService } from "../../services/alertify.service";
 import { FormControl, FormGroup, NgForm, Validators } from "@angular/forms";
 
 @Component({

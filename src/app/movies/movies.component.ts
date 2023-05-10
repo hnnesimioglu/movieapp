@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Movie } from "../models/movie";
+import { Movie } from "./movie";
 import { AlertifyService } from "../services/alertify.service";
 import { User } from "../models/user";
-import { MovieService } from "../services/movie.service";
+import { MovieService } from "./movie.service";
 import { CategoryService } from "../services/category.service";
 import { ActivatedRoute } from '@angular/router';
 import { AuthService } from '../services/auth.service';
