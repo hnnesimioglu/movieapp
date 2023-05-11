@@ -10,6 +10,7 @@ import { RouterModule } from "@angular/router";
 import { CommonModule } from "@angular/common";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { MoviesRoutingModule } from "./movies.routing.module";
+import { CategoriesModule } from "../category/categories.module";
 
 @NgModule({
     declarations: [
@@ -26,7 +27,8 @@ import { MoviesRoutingModule } from "./movies.routing.module";
         CommonModule,
         ReactiveFormsModule,
         FormsModule,
-        MoviesRoutingModule
+        MoviesRoutingModule,
+        CategoriesModule
     ],
     exports: [
         MoviesComponent,

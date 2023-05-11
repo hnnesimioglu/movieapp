@@ -3,7 +3,7 @@ import { Movie } from "./movie";
 import { AlertifyService } from "../services/alertify.service";
 import { User } from "../models/user";
 import { MovieService } from "./movie.service";
-import { CategoryService } from "../services/category.service";
+import { CategoryService } from "../category/category.service";
 import { ActivatedRoute } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 
