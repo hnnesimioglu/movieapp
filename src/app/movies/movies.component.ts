@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Movie } from "./movie.model";
-import { AlertifyService } from "../services/alertify.service";
+import { AlertifyService } from "../shared/alertify.service";
 import { User } from "../auth/user.model";
 import { MovieService } from "./movie.service";
 import { CategoryService } from "../category/category.service";
