@@ -11,6 +11,7 @@ import { CommonModule } from "@angular/common";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { MoviesRoutingModule } from "./movies.routing.module";
 import { CategoriesModule } from "../category/categories.module";
+import { SharedModule } from "../shared/shared.module";
 
 @NgModule({
     declarations: [
@@ -24,11 +25,11 @@ import { CategoriesModule } from "../category/categories.module";
     ],
     imports: [
         RouterModule,
-        CommonModule,
         ReactiveFormsModule,
         FormsModule,
         MoviesRoutingModule,
-        CategoriesModule
+        CategoriesModule,
+        SharedModule
     ],
     exports: [
         MoviesComponent,
